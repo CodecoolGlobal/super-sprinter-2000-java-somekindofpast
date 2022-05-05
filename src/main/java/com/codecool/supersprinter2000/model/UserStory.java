@@ -3,17 +3,15 @@ package com.codecool.supersprinter2000.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class UserStory {
-    @JsonProperty("Id")
     private int id;
-    @JsonProperty("Story Title")
+    @JsonProperty("story_title")
     private String storyTitle;
-    @JsonProperty("User Story")
+    @JsonProperty("user_story")
     private String userStory;
-    @JsonProperty("Acceptance Criteria")
+    @JsonProperty("acceptance_criteria")
     private String acceptanceCriteria;
-    @JsonProperty("Business Value")
+    @JsonProperty("business_value")
     private float businessValue;
-    @JsonProperty("Status")
     private String status;
 
     public UserStory(String storyTitle, String userStory, String acceptanceCriteria, float businessValue, String status) {
@@ -22,6 +20,9 @@ public class UserStory {
         this.acceptanceCriteria = acceptanceCriteria;
         this.businessValue = businessValue;
         this.status = status;
+    }
+
+    public UserStory() {
     }
 
     public int getId() {
