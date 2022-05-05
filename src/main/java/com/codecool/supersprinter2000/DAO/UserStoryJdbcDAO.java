@@ -29,19 +29,19 @@ public class UserStoryJdbcDAO implements UserStoryDAO {
 
     @Override
     public List<UserStory> findAllUserStories() {
-        String sql = "SELECT id, story_title, user_story, acceptance_criteria, business_value, status FROM user_stories";
+        String sql = "SELECT id, story_title, user_story, acceptance_criteria, business_value, estimation, status FROM user_stories";
         return jdbcTemplate.query(sql, userStoryMapper);
     }
 
     @Override
     public UserStory findUserStoryById(long id) {
-        String sql = "SELECT id, story_title, user_story, acceptance_criteria, business_value, status FROM user_stories WHERE id = ?";
+        String sql = "SELECT id, story_title, user_story, acceptance_criteria, business_value, estimation, status FROM user_stories WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, userStoryMapper, id);
     }
 
     @Override
     public long addUserStory(UserStory userStory) {
-        String sql = "INSERT INTO user_stories(story_title, user_story, acceptance_criteria, business_value, status) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO user_stories(story_title, user_story, acceptance_criteria, business_value, estimation, status) VALUES (?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(getPreparedStatementCreator(userStory, sql), keyHolder);
         return (long)keyHolder.getKeys().get("id");
@@ -54,14 +54,15 @@ public class UserStoryJdbcDAO implements UserStoryDAO {
             statement.setString(2, userStory.getUserStory());
             statement.setString(3, userStory.getAcceptanceCriteria());
             statement.setFloat(4, userStory.getBusinessValue());
-            statement.setString(5, userStory.getStatus());
+            statement.setInt(5, userStory.getEstimation());
+            statement.setString(6, userStory.getStatus());
             return statement;
         };
     }
 
     @Override
     public void updateUserStory(long id, UserStory userStory) {
-        String sql = "UPDATE user_stories SET story_title = ?, user_story = ?, acceptance_criteria = ?, business_value = ?, status = ? WHERE id = ?";
-        jdbcTemplate.update(sql, userStory.getStoryTitle(), userStory.getUserStory(), userStory.getAcceptanceCriteria(), userStory.getBusinessValue(), userStory.getStatus(), id);
+        String sql = "UPDATE user_stories SET story_title = ?, user_story = ?, acceptance_criteria = ?, business_value = ?, estimation = ?, status = ? WHERE id = ?";
+        jdbcTemplate.update(sql, userStory.getStoryTitle(), userStory.getUserStory(), userStory.getAcceptanceCriteria(), userStory.getBusinessValue(), userStory.getEstimation(), userStory.getStatus(), id);
     }
 }

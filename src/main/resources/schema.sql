@@ -7,5 +7,6 @@ CREATE TABLE user_stories
     user_story              varchar(400),
     acceptance_criteria     varchar(400),
     business_value          float,
+    estimation              int,
     status                  varchar(20)
 );

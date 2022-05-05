@@ -1,8 +1,13 @@
 package com.codecool.supersprinter2000.controller;
 
+import com.codecool.supersprinter2000.model.UserStory;
 import com.codecool.supersprinter2000.service.UserStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 public class UserStoryController {
@@ -12,4 +17,26 @@ public class UserStoryController {
     public UserStoryController(UserStoryService userStoryService) {
         this.userStoryService = userStoryService;
     }
+
+    @GetMapping
+    public String index(Model model) {
+        model.addAttribute("userStories", userStoryService.findAllUserStories());
+        return "index";
+    }
+
+    //public List<UserStory> findAllUserStories() {
+    //    return userStoryService.findAllUserStories();
+    //}
+
+    //public UserStory findUserStoryById(long id) {
+    //    return userStoryService.findUserStoryById(id);
+    //}
+
+    //public long addUserStory(UserStory userStory) {
+    //    return userStoryService.addUserStory(userStory);
+    //}
+
+    //public void updateUserStory(long id, UserStory userStory) {
+    //    userStoryService.updateUserStory(id, userStory);
+    //}
 }
