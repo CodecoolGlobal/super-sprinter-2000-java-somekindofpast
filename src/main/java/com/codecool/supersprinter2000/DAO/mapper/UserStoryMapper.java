@@ -17,6 +17,7 @@ public class UserStoryMapper implements RowMapper<UserStory> {
         userStory.setUserStory(rs.getString("user_story"));
         userStory.setAcceptanceCriteria(rs.getString("acceptance_criteria"));
         userStory.setBusinessValue(rs.getFloat("business_value"));
+        userStory.setEstimation(rs.getInt("estimation"));
         userStory.setStatus(rs.getString("status"));
         return userStory;
     }

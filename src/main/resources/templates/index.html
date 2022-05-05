@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <title>Super Sprinter 2000</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        th, td {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<h1>Super Sprinter 2000</h1>
+
+<a href="/story">Add new User Story</a>
+
+<div th:if="${ not#lists.isEmpty(userStories)}">
+    <table style="width:60%">
+        <tr>
+            <th>Id</th>
+            <th>Story Title</th>
+            <th>User Story</th>
+            <th>Acceptance Criteria</th>
+            <th>Business Value</th>
+            <th>Estimation</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="userStory : ${userStories}">
+            <td th:text="${userStory.getId()}"></td>
+            <td th:text="${userStory.getStoryTitle()}"></td>
+            <td th:text="${userStory.getUserStory()}"></td>
+            <td th:text="${userStory.getAcceptanceCriteria()}"></td>
+            <td th:text="|${userStory.getBusinessValue()} point|"></td>
+            <td th:text="|${userStory.getEstimation()}h|"></td>
+            <td th:text="${userStory.getStatus()}"></td>
+            <td>
+                <a th:href="@{/story/{id}(id=${userStory.getId()})}">Update</a>
+            </td>
+
+        </tr>
+        </table>
+</div>
+</body>
+</html>
