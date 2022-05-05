@@ -12,11 +12,11 @@ public class UserStory {
     @JsonProperty("Acceptance Criteria")
     private String acceptanceCriteria;
     @JsonProperty("Business Value")
-    private int businessValue;
+    private float businessValue;
     @JsonProperty("Status")
     private String status;
 
-    public UserStory(String storyTitle, String userStory, String acceptanceCriteria, int businessValue, String status) {
+    public UserStory(String storyTitle, String userStory, String acceptanceCriteria, float businessValue, String status) {
         this.storyTitle = storyTitle;
         this.userStory = userStory;
         this.acceptanceCriteria = acceptanceCriteria;
@@ -56,11 +56,11 @@ public class UserStory {
         this.acceptanceCriteria = acceptanceCriteria;
     }
 
-    public int getBusinessValue() {
+    public float getBusinessValue() {
         return businessValue;
     }
 
-    public void setBusinessValue(int businessValue) {
+    public void setBusinessValue(float businessValue) {
         this.businessValue = businessValue;
     }
 
