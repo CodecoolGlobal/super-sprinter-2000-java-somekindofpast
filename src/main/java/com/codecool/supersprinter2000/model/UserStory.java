@@ -37,11 +37,12 @@ public class UserStory {
     @NotBlank
     private String status;
 
-    public UserStory(String storyTitle, String userStory, String acceptanceCriteria, float businessValue, String status) {
+    public UserStory(String storyTitle, String userStory, String acceptanceCriteria, float businessValue, int estimation, String status) {
         this.storyTitle = storyTitle;
         this.userStory = userStory;
         this.acceptanceCriteria = acceptanceCriteria;
         this.businessValue = businessValue;
+        this.estimation = estimation;
         this.status = status;
     }
 

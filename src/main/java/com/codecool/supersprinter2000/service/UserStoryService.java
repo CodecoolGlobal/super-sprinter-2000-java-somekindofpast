@@ -26,7 +26,7 @@ public class UserStoryService {
         return userStoryDAO.findUserStoryById(id);
     }
 
-    public long addUserStory(UserStory userStory) {
+    public int addUserStory(UserStory userStory) {
         return userStoryDAO.addUserStory(userStory);
     }
 
