@@ -40,11 +40,11 @@ public class UserStoryJdbcDAO implements UserStoryDAO {
     }
 
     @Override
-    public long addUserStory(UserStory userStory) {
+    public int addUserStory(UserStory userStory) {
         String sql = "INSERT INTO user_stories(story_title, user_story, acceptance_criteria, business_value, estimation, status) VALUES (?,?,?,?,?,?)";
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcTemplate.update(getPreparedStatementCreator(userStory, sql), keyHolder);
-        return (long)keyHolder.getKeys().get("id");
+        return (int)keyHolder.getKeys().get("id");
     }
 
     private PreparedStatementCreator getPreparedStatementCreator(UserStory userStory, String sql) {
