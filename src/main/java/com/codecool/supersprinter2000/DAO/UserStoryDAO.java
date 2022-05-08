@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserStoryDAO {
     List<UserStory> findAllUserStories();
-    UserStory findUserStoryById(long id);
+    UserStory findUserStoryById(int id);
     int addUserStory(UserStory userStory);
-    void updateUserStory(long id, UserStory userStory);
+    void updateUserStory(int id, UserStory userStory);
 }

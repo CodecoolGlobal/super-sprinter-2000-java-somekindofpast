@@ -22,7 +22,7 @@ public class UserStoryService {
         return userStoryDAO.findAllUserStories();
     }
 
-    public UserStory findUserStoryById(long id) {
+    public UserStory findUserStoryById(int id) {
         return userStoryDAO.findUserStoryById(id);
     }
 
@@ -30,7 +30,7 @@ public class UserStoryService {
         return userStoryDAO.addUserStory(userStory);
     }
 
-    public void updateUserStory(long id, UserStory userStory) {
+    public void updateUserStory(int id, UserStory userStory) {
         userStoryDAO.updateUserStory(id, userStory);
     }
 }
