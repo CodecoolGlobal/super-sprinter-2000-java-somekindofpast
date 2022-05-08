@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <title>update</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <style>
+        label {
+            font-size: larger;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Update User Story</h1>
+
+<form name="updateUserStoryForm" th:action="@{/story/{id}(id=${userStory.getId()})}" method="post">
+    <p>
+        <label for="title">Story Title:</label><br>
+        <input type="text" id="title" name="title" minlength="5" maxlength="100" size="30" required th:value="${userStory.getStoryTitle()}"/>
+    </p>
+    <p>
+        <label for="story">User Story:</label><br>
+        <textarea id="story" name="story" cols=50 rows="4" maxlength="400" required th:text="${userStory.getUserStory()}"></textarea>
+    </p>
+    <p>
+        <label for="criteria">Acceptance Criteria:</label><br>
+        <textarea id="criteria" name="criteria" cols=50 rows="4" maxlength="400" required th:text="${userStory.getAcceptanceCriteria()}"></textarea>
+    </p>
+    <p>
+        <label for="value">Business Value:</label><br>
+        <input type="number" id="value" name="value" size="10" min="0.5" max="40.0" step="0.5" required th:value="${userStory.getBusinessValue()}"/>
+    </p>
+    <p>
+        <label for="estimation">Estimation:</label><br>
+        <input type="number" id="estimation" name="estimation" min="1" max="9999" step="1" required th:value="${userStory.getEstimation()}"/>
+    </p>
+    <p>
+        <label for="status">Status:</label><br>
+        <select name="status" id="status" required>
+            <option value="planning" th:selected="'planning' == ${userStory.getStatus()}">planning</option>
+            <option value="todo" th:selected="'todo' == ${userStory.getStatus()}">todo</option>
+            <option value="in progress" th:selected="'in progress' == ${userStory.getStatus()}">in progress</option>
+            <option value="review" th:selected="'review' == ${userStory.getStatus()}">review</option>
+            <option value="done" th:selected="'done' == ${userStory.getStatus()}">done</option>
+        </select>
+    </p>
+
+    <p>
+        <button type="submit">Update User Story</button>
+    </p>
+</form>
+
+</body>
+</html>

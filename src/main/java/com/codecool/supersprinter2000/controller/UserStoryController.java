@@ -5,12 +5,7 @@ import com.codecool.supersprinter2000.service.UserStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
@@ -39,15 +34,15 @@ public class UserStoryController {
         return "redirect:/";
     }
 
-    //public UserStory findUserStoryById(long id) {
-    //    return userStoryService.findUserStoryById(id);
-    //}
+    @GetMapping("/story/{id}")
+    public String update(@PathVariable int id, Model model) {
+        model.addAttribute("userStory", userStoryService.findUserStoryById(id));
+        return "update";
+    }
 
-    //public long addUserStory(UserStory userStory) {
-    //    return userStoryService.addUserStory(userStory);
-    //}
-
-    //public void updateUserStory(long id, UserStory userStory) {
-    //    userStoryService.updateUserStory(id, userStory);
-    //}
+    @PostMapping("/story/{id}")
+    public String updateStory(@PathVariable int id, @RequestParam String title, @RequestParam String story, @RequestParam String criteria, @RequestParam float value, @RequestParam int estimation, @RequestParam String status) {
+        userStoryService.updateUserStory(id, new UserStory(title, story, criteria, value, estimation, status));
+        return "redirect:/";
+    }
 }

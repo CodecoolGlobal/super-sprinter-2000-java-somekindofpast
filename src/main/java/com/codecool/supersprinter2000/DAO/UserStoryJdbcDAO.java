@@ -34,7 +34,7 @@ public class UserStoryJdbcDAO implements UserStoryDAO {
     }
 
     @Override
-    public UserStory findUserStoryById(long id) {
+    public UserStory findUserStoryById(int id) {
         String sql = "SELECT id, story_title, user_story, acceptance_criteria, business_value, estimation, status FROM user_stories WHERE id = ?";
         return jdbcTemplate.queryForObject(sql, userStoryMapper, id);
     }
@@ -61,7 +61,7 @@ public class UserStoryJdbcDAO implements UserStoryDAO {
     }
 
     @Override
-    public void updateUserStory(long id, UserStory userStory) {
+    public void updateUserStory(int id, UserStory userStory) {
         String sql = "UPDATE user_stories SET story_title = ?, user_story = ?, acceptance_criteria = ?, business_value = ?, estimation = ?, status = ? WHERE id = ?";
         jdbcTemplate.update(sql, userStory.getStoryTitle(), userStory.getUserStory(), userStory.getAcceptanceCriteria(), userStory.getBusinessValue(), userStory.getEstimation(), userStory.getStatus(), id);
     }
